@@ -2,19 +2,19 @@
 
 ## Here some of my notes
 
-### base knowledge
-
-> [Git](Notes/git.md)
-
-> [Cmake](Notes/cmake.md)
-
 ### front end
 
 > [Html](Notes/html.md)
 
-> [Css](Notes/css.md) (still updating)
+> [Css](Notes/css.md)
 
 > [Javascript](Notes/javascript.md) (Todo)
+
+### extended knowledge
+
+> [Git](Notes/git.md)
+
+> [Cmake](Notes/cmake.md)
 
 ### C#
 
