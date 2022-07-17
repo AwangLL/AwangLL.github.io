@@ -2,20 +2,25 @@
 
 ## Here some of my notes
 
-### front end
+### Frontend
 
-> [Html](Notes/html.md)
+> [Html](Notes/Frontend/html.md)
 
-> [Css](Notes/css.md)
+> [Css](Notes/Frontend/css.md)
 
-> [Javascript](Notes/javascript.md) (Todo)
+> [Javascript](Notes/Frontend/javascript.md) (Todo)
 
-### extended knowledge
+### Backend
 
-> [Git](Notes/git.md)
+> [Java](Notes/Backend/java.md) (Updating)
 
-> [Cmake](Notes/cmake.md)
 
-### C#
+### Tools
 
-> [C# dll C++](Notes/CsharpDll.md)
+> [Git](Notes/Tools/git.md)
+
+> [Cmake](Notes/Tools/cmake.md)
+
+### Others
+
+> [C# dll C++](Notes/Others/CsharpDll.md)
