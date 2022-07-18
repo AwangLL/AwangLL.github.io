@@ -12,7 +12,11 @@
 
 ### Backend
 
-> [Java](Notes/Backend/java.md) (Updating)
+> [Java](Notes/Backend/java.md)
+
+> [Java GUI](Notes/Backend/java_Gui.md) (Todo)
+
+> [Java Multithreading](Notes/Backend/java_multithreading.md)
 
 
 ### Tools
