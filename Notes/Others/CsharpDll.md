@@ -149,6 +149,8 @@ public struct TestStruct
 
 - # 创建并调用动态库
 
+> 环境：Visual Studio 2019 Community
+
 1. 创建工程文件夹project，在之中新建 src 和 bin
 
 2. 创建一个C#项目（下称项目1）， 目录为 project/src
