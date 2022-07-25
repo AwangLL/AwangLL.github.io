@@ -1,0 +1,105 @@
+## 异常
+
+### 捕获和抛出异常
+
+- try
+- catch
+- finally
+- throw
+- throws
+
+> 捕获异常
+
+- 在idea中选中代码块按<kbd>ctrl</kbd> + <kbd>alt</kbd> + <kbd>t</kbd>
+
+```java
+try
+{
+    // try监控区域
+}
+catch(Exception e) // catch里的参数为想要捕获的异常类型
+{
+    // try检测到异常时会执行以下代码
+    // Code
+    e.printStackTrace();
+}
+catch(Error e) // 可以有多个catch捕获多种异常
+{
+    // try检测到异常时会执行以下代码
+    // Code
+    e.printStackTrace();
+}
+finally
+{
+    // 无论是否发生异常，都会执行
+}
+```
+
+> 抛出异常
+
+```java
+public static void main(String[] args)
+{
+    try
+    {
+        
+    }
+    catch
+    {
+
+    }
+}
+
+// throws用来声明当前方法可能会出现某些异常，如果出现了异常，将由调用者来处理，声明了异常不一定会出现异常
+public void test() throws ArithmeticException,ArrayIndexOutOfBoundsException
+{
+    // 主动抛出异常，一般在方法中使用
+    // 如果在这个方法中处理不了这个异常，则需要在该方法中抛出异常
+    throw new ArithmeticException();
+}
+```
+
+### 自定义异常
+
+1. 创建自定义异常类
+2. 在方法中通过throw关键字抛出异常
+
+```java
+// MyException.java
+public class MyException extends Exception{
+    protected int detail;
+
+    public MyException(int num)
+    {
+        super("MyException{" + num + "}");
+        this.detail = num;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "MyException{" + detail + "}";
+    }
+}
+```
+
+``` java
+// Hello.java
+public class Hello {
+    public static void main(String[] args) {
+        try {
+            test(19);
+        } catch (MyException e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void test(int num) throws MyException
+    {
+        if(num > 10)
+        {
+            throw new MyException(num);
+        }
+    }
+}
+```

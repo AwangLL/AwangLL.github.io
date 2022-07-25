@@ -2,22 +2,15 @@
 
 ## Here some of my notes
 
-### Frontend
+## [Java](Notes/Java/Java.md)
 
-> [Html](Notes/Frontend/html.md)
+======================
 
-> [Css](Notes/Frontend/css.md)
+## [Html](Notes/Frontend/html.md)
 
-> [Javascript](Notes/Frontend/javascript.md) (Todo)
+## [Css](Notes/Frontend/css.md)
 
-### Backend
-
-> [Java](Notes/Backend/java.md)
-
-> [Java GUI](Notes/Backend/java_Gui.md) (Todo)
-
-> [Java Multithreading](Notes/Backend/java_multithreading.md)
-
+## [Javascript](Notes/Frontend/javascript.md) (Todo)
 
 ### Tools
 
