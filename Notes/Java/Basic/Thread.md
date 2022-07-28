@@ -1,8 +1,8 @@
-# Java Multithreading
+## Java多线程
 
-## 线程创建
+### 线程创建
 
-### 继承Thread类
+#### 继承Thread类
 
 重写run方法，调用start开启线程
 
@@ -32,7 +32,7 @@ public class TestThread extends Thread {
 }
 ```
 
-### 实现Runnable接口
+#### 实现Runnable接口
 
 实现run方法，调用start开启线程
 
@@ -65,7 +65,7 @@ public class TestThread implements Runnable {
 }
 ```
 
-### 实现Callable接口
+#### 实现Callable接口
 
 1. 实现Callable接口，需要返回类型
 2. 重写call方法，需要抛出异常
@@ -106,118 +106,7 @@ public class TestCallable implements Callable<Boolean> {
 }
 ```
 
-## lambda表达式
-
-函数式接口(Functional Interface)：任何接口，如果只包含唯一一个抽象方法，那么它就是一个函数式接口。
-
-### 推导lambda表达式
-
-```java
-public class Testlambda {  
-    // 3. 静态内部类  
-    static class Like2 implements ILike {  
-        @Override  
-        public void lambda() {  
-            System.out.println("lambda like 2");  
-        }  
-    }  
-  
-    public static void main(String[] args) {  
-        ILike like = new Like1();  
-        like.lambda();  
-  
-        like = new Like2();  
-        like.lambda();  
-  
-        // 4. 局部内部类  
-        class Like3 implements ILike  
-        {  
-            @Override  
-            public void lambda() {  
-                System.out.println("lambda like 3");  
-            }  
-        }  
-        like = new Like3();  
-        like.lambda();  
-  
-        // 5. 匿名内部类  
-        like = new ILike() {  
-            @Override  
-            public void lambda() {  
-                System.out.println("lambda like 4");  
-            }  
-        };  
-        like.lambda();
-    }  
-}  
-  
-// 1. 定义一个函数式接口  
-interface ILike {  
-    void lambda();  
-}  
-  
-// 2. 实现类  
-class Like1 implements ILike {  
-    @Override  
-    public void lambda() {  
-        System.out.println("lambda like 1");  
-    }  
-}
-```
-
-输出为
-
-```
-lambda like 1
-lambda like 2
-lambda like 3
-lambda like 4
-```
-
-### 用Lambda表达式简化
-
-```java
-// 接在之前的程序后
-like = () -> {  
-    System.out.println("lambda like 5");  
-};  
-like.lambda();
-```
-
-### 带参数的lambda表达式
-
-```java
-public class TestLambdaParam {  
-    public static void main(String[] args) {  
-        ILove love = (int num) -> {  
-            System.out.println("lambda love " + num);  
-        };  
-        love.lambda(0);  
-  
-        /* 1. 简化参数类型 */        // 当有多个参数时，所有参数都需简化或所有参数都不简化  
-        love = (num) -> {  
-            System.out.println("lambda love " + num);  
-        };  
-        love.lambda(1);  
-  
-        /* 2. 简化括号 */        // 当有多个参数时，括号不可省略  
-        love = num -> {  
-            System.out.println("lambda love " + num);  
-        };  
-        love.lambda(2);  
-  
-        /* 3. 简化大括号 */        // 当代码块中只有一行时，可简化大括号  
-        love = num -> System.out.println("lambda love " + num);  
-        love.lambda(3);  
-    }  
-}  
-  
-interface ILove {  
-    void lambda(int num);  
-}
-```
-
-## 线程
+### 线程
 
 - 每个线程在自己的工作内存交互，内存控制不当会造成数据不一致性。
 
@@ -240,7 +129,7 @@ graph TB;
 |interrrupt()|终端线程（不建议使用）|
 |boolean isAlive()|测试线程是否处于活动状态|
 
-### 停止线程
+#### 停止线程
 
 建议使用设置标志位的方法，不要使用stop或destroy等过时或JDK不建议使用的方法
 
@@ -278,7 +167,7 @@ public class TestThreadStop implements Runnable{
 }
 ```
 
-### 线程休眠
+#### 线程休眠
 
 每个对象都有一个锁，sleep不会释放锁。
 
@@ -305,7 +194,7 @@ public class TestThreadSleep{
 }
 ```
 
-### 线程礼让
+#### 线程礼让
 
 - 让当前正在执行的线程暂停，但不阻塞
 - 将线程从运行状态转为就绪状态
@@ -348,7 +237,7 @@ A Thread Start
 A Thread Stop
 ```
 
-### 线程强制执行
+#### 线程强制执行
 
 ```java
 public class TestThreadJoin implements Runnable {  
@@ -376,7 +265,7 @@ public class TestThreadJoin implements Runnable {
 }
 ```
 
-### 线程状态
+#### 线程状态
 
 线程一旦进入死亡或终止状态，就无法再启动。
 
@@ -425,17 +314,17 @@ RUNNABLE
 TERMINATED
 ```
 
-### 线程优先级
+#### 线程优先级
 
 - `getPriority()` 获取线程优先级
 - `setPriority(int)` 设置线程优先级(要先设置优先级再启动线程)
 
-### 守护线程
+#### 守护线程
 
 - 虚拟机必须确保用户线程执行完毕，不需要等待守护线程执行完毕
 - `setDaemon(boolean)`参数为true，将线程设置为守护线程
 
-## 线程同步
+### 线程同步
 
 并发：同一个对象被多个线程同时操作
 
@@ -444,7 +333,7 @@ TERMINATED
 	- 在多线程竞争下，加锁，释放锁会导致比较多的上下文切换和调度延迟，引起性能问题；
 	- 如果一个优先级高的线程等待一个优先级低的线程释放锁会导致优先级倒置，引起性能问题。
 
-### 线程不安全案例
+#### 线程不安全案例
 
 >买票问题：多个人买到同一张票或第-1张票
 
@@ -590,7 +479,7 @@ public class UnsafeList {
 */
 ```
 
-### 同步方法
+#### 同步方法
 
 - 由于我们可以通过`private`关键字来保证数据对象只能被方法访问，所以我们只需要针对方法提出一套机制，这套机制就是`synchronized`关键字，它包括两种用法：`synchronized`方法和`synchronized`块。
 	- 同步方法：`public synchronized void method(int args)`
@@ -619,7 +508,7 @@ new Thread(() -> {
 }).start();
 ```
 
-### 死锁
+#### 死锁
 
 两个线程或多个线程都在等待对方释放资源，都停止执行的情形。同一个同步代码块同时拥有“两个以上对象的锁”时，就可能会发生“死锁”的问题。
 
@@ -630,7 +519,7 @@ new Thread(() -> {
 - 循环等待条件:若干进程之间形成一种头尾相接的循环等待资源关系。
 
 
-### Lock(锁)
+#### Lock(锁)
 
 从JDK5.0开始，Java提供了更强大的线程同步机制——通过显示定义同步锁对象来实现同步。同步锁使用Lock对象充当。
 
@@ -650,7 +539,7 @@ class A {
 }
 ```
 
-## 线程协作
+### 线程协作
 
 **生产者消费者问题**：
 - 假设仓库中只能存放一件物品，生产者将生产出来的产品放入仓库，消费者将仓库中产品取走消费。
@@ -818,7 +707,7 @@ class Product {
 }
 ```
 
-### 线程池
+#### 线程池
 
 - 提高响应速度
 - 降低资源消耗
