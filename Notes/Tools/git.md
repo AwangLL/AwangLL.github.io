@@ -30,7 +30,7 @@ graph TB;
 - Respository: 仓库区（或本地仓库），就是安全存放数据的位置，这里有提交到所有版本的数据。其中HEAD指向最新放入仓库的版本
 - Remote: 远程仓库，托管代码的服务器
 
-> 工作流程
+### 工作流程
 
 1. 在工作目录中添加、修改文件；
 2. 将需要进行版本管理的文件放入暂存区；
@@ -39,13 +39,13 @@ graph TB;
 
 ## Git项目搭建
 
-> 本地仓库搭建
+### 本地仓库搭建
 
 ```bash
 $ git init
 ```
 
-> 克隆远程仓库
+### 克隆远程仓库
 
 ```bash
 $ git clone [url]
@@ -53,7 +53,7 @@ $ git clone [url]
 
 ## Git文件操作
 
-> 文件的4种状态
+### 文件的4种状态
 
 - Untracked: 未跟踪，此文件在文件夹中，但并没有加入到git库，不参与版本控制。通过```git add```状态变为 ```Staged```
 
@@ -63,7 +63,7 @@ $ git clone [url]
 
 - Staged: 暂存状态。执行```git commit```则将修改同步到库中，这时库中的文件和本地文件又变为一致，文件为```Unmodify```状态。执行git reset HEAD filename取消暂存，文件状态为```Modified```
 
-> 查看文件状态
+### 查看文件状态
 
 ```bash
 # 查看文件状态
@@ -73,7 +73,7 @@ $ git status [file]
 $ git status
 ```
 
-> 操作文件
+### 操作文件
 
 ```bash
 # 添加所有文件到暂存区
@@ -83,7 +83,7 @@ $ git add .
 $ git commit -m ""
 ```
 
-> 忽略文件
+### 忽略文件
 
 添加```.gitignore```文件
 
@@ -103,7 +103,7 @@ doc/.txt    # 会忽略doc/notes.txt 但不包括doc/server/arch.txt
 
 ## Git分支
 
-> git分支常用命令
+### git分支常用命令
 
 ```bash
 # 查看所有分支
@@ -131,7 +131,7 @@ $ git branch -dr [remote/branch-name]
 
 ## GitHub
 
-> 设置本机SSH公钥，实现免密登录
+### 设置本机SSH公钥，实现免密登录
 
 ```bash
 $ cd ~/.ssh/

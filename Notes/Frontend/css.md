@@ -1,6 +1,6 @@
 # css
 
-> css规范
+### css规范
 
 ```css
 selector{
@@ -12,13 +12,13 @@ selector{
 
 **优先级满足就近原则**
 
-- 行内样式
+### 行内样式
 
 ```html
 <h1 style="color: red"></h1>
 ```
 
-- style标签
+### style标签
 
 ```html
 <head>
@@ -33,7 +33,7 @@ selector{
 </body>
 ```
 
-- 外部
+### 外部
 
 ```html
 <head>
@@ -48,7 +48,7 @@ selector{
 
 ## 选择器
 
-> 作用：选择页面上的某一个或某一类元素。
+作用：选择页面上的某一个或某一类元素。
 
 ### 基本选择器
 
@@ -316,7 +316,7 @@ a:hover{
 </body>
 ```
 
-> background属性
+### background属性
 
 ```css
 div{
@@ -325,9 +325,7 @@ div{
 }
 ```
 
-> 背景渐变
-
-渐变背景代码生成：[Grabient](https://www.grabient.com)
+> 渐变背景代码生成：[Grabient](https://www.grabient.com)
 
 
 ## 盒子模型
@@ -403,7 +401,7 @@ div{
 - `both`:两侧都不允许有浮动元素
 - `none`
 
-> 父级边框塌陷问题
+### 父级边框塌陷问题
 
 浮动会使得元素脱离父级元素边框的范围
 

@@ -1,0 +1,237 @@
+## 注解与反射
+
+## 注解
+
+JDK5.0引入，不是程序本身，可以对程序做出解释，可以被其他程序（如编译器读取）。
+
+格式：@注解名，还可以添加一些参数值。
+
+### 内置注解
+
+- @Override：重载
+- @Deprecated：不推荐程序员使用
+- @SuppressWarnings：忽略警告
+
+### 元注解
+
+负责注解其他注解，Java定义了4个标准的meta-annotation类型。
+
+- @Target：用于描述注解的使用范围
+- @Retention：表示需要在什么级别保存该注释信息，用于描述注解的声明周期
+	- SOURCE < CLASS < RUNTIME
+- @Document：说明该注解将被包含在javadoc中
+- @Inherited：说明子类可以继承父类中的该注解
+
+### 自定义注解
+
+```java
+@Target({ElementType.TYPE,ElementType.METHOD})  
+@Retention(value = RetentionPolicy.RUNTIME)  
+public @interface TestAnnotation {  
+    // 注解的参数： 参数类型 参数名() [default 默认值]  
+    String name() default "";  
+    int age() default 0;  
+}
+```
+
+- 当注解只有一个参数时，建议用value命名，则当调用注解时，可以省去value参数名
+
+## 反射
+
+### 获取反射对象
+
+```java
+public class TestReflection {  
+    public static void main(String[] args) throws ClassNotFoundException {  
+        // 通过反射获取类的Class对象  
+        Class<?> c = Class.forName("User");  
+    }  
+}  
+  
+class User {  
+}
+```
+
+### Class类
+
+- Class本身也是一个类
+- Class对象只能由系统建立对象
+- 一个加载的类在JVM中只会有一个CLass实例
+- 一个Class对象对应的是一个加载到JVM中的一个class文件
+- 每个类的实例都会记得自己是由哪个Class实例所产生
+- 通过Class可以完整地得到一个类中的所有被加载的结构
+- Class类是Reflection的根源，针对任何你想动态加载、运行的类，唯有先获得相应的Class对象
+
+|方法|描述|
+|---|---|
+|static ClassforName(String name)|返回指定类名name的Class对象|
+|Object newlnstance()|调用缺省构造函数，返回Class对象的一个实例|
+|getName()|返回此Class对象所表示的实体(类，接口，数组类或void)的名称。|
+|Class getSuperClass()|返回当前Class对象的父类的Class对象|
+|Class[] getinterfaces()|获取当前Class对象的接口|
+|ClassLoader getClassLoader()|返回该类的类加载器|
+|Constructor[] getConstructors()|返回一个包含某些Constructor对象的数组|
+|Method getMothed(String name,Class.. T)|返回一个Method对象，此对象的形类型为paramType|
+|Field[ ] getDeclaredFields()|返回Field对象的一个数组|
+
+一些方法的演示
+
+```java
+public class TestReflection {  
+    public static void main(String[] args) throws ClassNotFoundException {  
+        Person person = new Student();  
+  
+        // 通过对象获取类的Class对象  
+        Class<?> c1 = person.getClass();  
+        // 通过反射获取类的Class对象  
+        Class<?> c2 = Class.forName("Student");  
+        // 通过类名获取类的Class对象  
+        Class<?> c3 = Student.class;  
+        // 三种方法获得的对象都一样  
+        System.out.println(c1.hashCode() == c2.hashCode() &&  
+                c2.hashCode() == c3.hashCode()); // true  
+        // 获得父类类型  
+        Class<?> c4 = c1.getSuperclass();  
+        System.out.println(c4);  
+    }  
+}  
+  
+class Person {  
+}  
+  
+class Student extends Person {  
+}  
+  
+class Teacher extends Person {  
+}
+```
+
+### 可以有Class对象的类型
+- `class`(类)
+- `interface`(接口)
+- `[]`(数组)
+- `enum`(枚举)
+- `annotation`(注解@interface)
+- `primitive type`(基本数据类型)
+- `void`
+
+### 类的初始化
+
+- 类的主动引用(一定会发生类的初始化)
+	- 当虚拟机启动，先初始化main方法所在的类
+	- new一个类的对象
+	- 调用类的静态成员(除了final常量)和静态方法
+	- 使用java.lang.reflect包的方法对类进行反射调用
+	- 当初始化一个类，如果其父类没有被初始化，则先会初始化它的父类
+- 类的被动引用(不会发生类的初始化)
+	- 当访问一个静态域时，只有真正声明这个域的类才会被初始化。如:当通过子类引用父类的静态变量，不会导致子类初始化
+	- 通过数组定义类引用，不会触发此类的初始化
+	- 引用常量不会触发此类的初始化（常量在链接阶段就存入调用类的常量池中了)
+
+### 获取类的运行时结构
+
+```java
+// 通过反射获取类的Class对象  
+Class<?> c = Class.forName("User");  
+  
+// 获得类的名字  
+System.out.println(c.getName());  
+System.out.println(c.getSimpleName());  
+  
+// 获得类的属性  
+Field[] fields = c.getFields(); // 只能找到public属性  
+fields = c.getDeclaredFields(); // 可以找到所有属性  
+for(Field field : fields) {  
+    System.out.println(field);  
+}  
+// 获得指定属性  
+System.out.println(c.getDeclaredField("name"));  
+  
+// 获得类的方法  
+Method[] methods = c.getMethods(); // 本类和父类的所有public方法  
+methods = c.getDeclaredMethods(); // 本类的所有方法  
+for(Method method : methods) {  
+    System.out.println(method);  
+}
+```
+
+### 动态创建对象执行方法
+
+```java
+Class<?> c = Class.forName("User");  
+  
+User user = (User) c.newInstance(); // 调用类的无参构造器  
+System.out.println(user);  
+  
+// 通过构造器构造对象  
+Constructor<?> constructor =  c.getDeclaredConstructor(String.class, int.class, int.class);  
+User user2 = (User) constructor.newInstance("jack", 10, 001);  
+System.out.println(user2);  
+  
+// 通过反射调用方法  
+User user3 = (User) c.newInstance();  
+Method setName =  c.getMethod("setName", String.class);  
+setName.invoke(user3, "Tom");  
+System.out.println(user3);  
+  
+// 通过放射操作属性  
+User user4 = (User) c.newInstance();  
+Field name = c.getDeclaredField("name");  
+name.setAccessible(true); // 取消属性的访问权限检测  
+name.set(user4, "Jerry");  
+System.out.println(user4);
+```
+
+### 反射获取泛型
+
+```java
+public class ReflectionGeneric {  
+    public void test01(Map<String, User> map, List<User> list) {  
+        System.out.println("test01");  
+    }  
+  
+    public Map<String, User> test02() {  
+        System.out.println("test02");  
+        return null;  
+    }  
+  
+    public static void main(String[] args) throws NoSuchMethodException {  
+        // 获取泛型参数类型  
+        Method method = ReflectionGeneric.class.getMethod("test01", Map.class, List.class);  
+        Type[] genericParameterTypes = method.getGenericParameterTypes();  
+  
+        for (Type genericParameterType : genericParameterTypes) {  
+            System.out.println("#" + genericParameterType);  
+            if(genericParameterType instanceof ParameterizedType) {  
+                Type[] actualTypeArguments = ((ParameterizedType) genericParameterType).getActualTypeArguments();  
+                for (Type actualTypeArgument : actualTypeArguments) {  
+                    System.out.println(actualTypeArgument);  
+                }  
+            }  
+        }  
+  
+        // 获取返回值参数类型  
+        method = ReflectionGeneric.class.getMethod("test02");  
+        Type genericReturnType = method.getGenericReturnType();  
+        System.out.println(genericReturnType);  
+        if(genericReturnType instanceof ParameterizedType) {  
+            Type[] actualTypeArguments = ((ParameterizedType) genericReturnType).getActualTypeArguments();  
+            for (Type actualTypeArgument : actualTypeArguments) {  
+                System.out.println(actualTypeArgument);  
+            }  
+        }  
+    }  
+}
+```
+
+### 反射获取注解
+
+```java
+Class<?> c = Class.forName("User");  
+  
+// 通过反射获得注解  
+Annotation[] annotations = c.getAnnotations();  
+for (Annotation annotation : annotations) {  
+    System.out.println(annotation);  
+}
+```
