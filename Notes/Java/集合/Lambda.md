@@ -1,8 +1,8 @@
-## lambda表达式
+# lambda表达式
 
 函数式接口(Functional Interface)：任何接口，如果只包含唯一一个抽象方法，那么它就是一个函数式接口。
 
-### 推导lambda表达式
+## 推导lambda表达式
 
 ```java
 public class Testlambda {  
@@ -66,7 +66,7 @@ lambda like 3
 lambda like 4
 ```
 
-### 用Lambda表达式简化
+## 用Lambda表达式简化
 
 ```java
 // 接在之前的程序后
@@ -76,7 +76,7 @@ like = () -> {
 like.lambda();
 ```
 
-### 带参数的lambda表达式
+## 带参数的lambda表达式
 
 ```java
 public class TestLambdaParam {  
