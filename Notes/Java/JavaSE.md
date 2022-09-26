@@ -30,3 +30,6 @@
 - [常用工具类](Notes/Java/集合/常用工具类.md)
 - [Lambda](Notes/Java/集合/Lambda.md)
 
+## 泛型
+
+- [泛型](Notes/Java/集合/Lambda.md)
