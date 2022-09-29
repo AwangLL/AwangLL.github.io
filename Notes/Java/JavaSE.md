@@ -43,9 +43,9 @@
 
 - [File类](JavaSE/IO/File类.md)
 - [字节流](JavaSE/IO/字节流.md)
-- [字符流](Notes/Java/JavaSE/IO/字符流.md)
-- [转换流](Notes/Java/JavaSE/IO/转换流.md)
-- [序列化与反序列化](Notes/Java/JavaSE/IO/序列化与反序列化.md)
+- [字符流](JavaSE/IO/字符流.md)
+- [转换流](JavaSE/IO/转换流.md)
+- [序列化与反序列化](JavaSE/IO/序列化与反序列化.md)
 
 
 
