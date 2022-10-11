@@ -2,6 +2,8 @@
 
 ## ServerSocket类
 
+ServerSocket类的主要作用是接收客户端的连接请求。
+
 |构造方法|功能描述|
 |---|---|
 |ServerSocket()|通过该方法创建的ServerSocket对象不与任何端口绑定，这样的ServerSocket对象创建的服务器端没有监听任何端口，不能直接使用，还需要继续调用bind(SocketAddress endpoint)方法将其绑定到指定的端口号上，才可以正常使用。
