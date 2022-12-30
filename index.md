@@ -2,6 +2,7 @@
 
 ## Java
 - [JavaSE](Notes/Java/JavaSE)
+- [JavaEE](Notes/Java/JavaEE)
 
 ## 前端
 - [Html](Notes/Frontend/html.md)
