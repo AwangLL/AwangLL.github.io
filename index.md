@@ -8,14 +8,11 @@
 - [Html](Notes/Frontend/html.md)
 - [Css](Notes/Frontend/css.md)
 - [Javascript](Notes/Frontend/javascript.md)
+- [Flex布局](Notes/Frontend/flex.md)
 
 ## 工具
 -  [Git](Notes/Tools/git.md)
 - [Cmake](Notes/Tools/cmake.md)
-
-## 深度学习
-
-- [梯度下降](Notes/DeepLearning/梯度下降法)
 
 ## 其他
 - [C# dll C++](Notes/Others/CsharpDll.md)

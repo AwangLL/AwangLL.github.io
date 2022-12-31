@@ -103,8 +103,6 @@ doc/.txt    # 会忽略doc/notes.txt 但不包括doc/server/arch.txt
 
 ## Git分支
 
-### git分支常用命令
-
 ```bash
 # 查看所有分支
 $ git branch
@@ -128,6 +126,26 @@ $ git branch -d [branch-name]
 $ git push origin --delete [branch-name]
 $ git branch -dr [remote/branch-name]
 ```
+
+## Git远程
+
+```bash
+# 显示所有远程仓库
+$ git remote -v
+
+# 显示某个仓库信息
+$ git remote show [remote-name]
+
+# 添加远程版本库
+$ git remote add [remote-name] [url]
+
+# 删除远程仓库
+$ git remote rm [remote-name]
+
+# 修改仓库名
+$ git remote rename [old_name] [new_name]
+```
+
 
 ## GitHub
 
